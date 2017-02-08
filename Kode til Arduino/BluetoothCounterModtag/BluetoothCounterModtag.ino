@@ -4,8 +4,8 @@
  */
 
 #include <SoftwareSerial.h>
-int bluetoothTx = 3;
-int bluetoothRx = 4;
+int bluetoothTx = 2;
+int bluetoothRx = 1;
 
 SoftwareSerial bluetooth(bluetoothTx, bluetoothRx);//Arduino RX,Tx
 char msg;
@@ -19,7 +19,7 @@ void setup(){
 
 void loop(){
   bluetooth.listen();
-  modtagFraBluetooth();
+  recieveBluetooth();
   Serial.println(counter);
   bluetooth.println(counter);
   counter++;
@@ -33,7 +33,7 @@ void loop(){
  * modtages 't' tændes diode på ben 13
  * modtages 's' slukkes dioden
  */
-void modtagFraBluetooth(){
+void recieveBluetooth(){
   char msg;
   if(bluetooth.available()){ 
     msg= (char)bluetooth.read(); 

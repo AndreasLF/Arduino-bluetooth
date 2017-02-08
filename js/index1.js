@@ -44,7 +44,7 @@ function onConnect() {
     statusDiv.innerHTML="Connected to ";
     //statusDiv.innerHTML="Connected to " + macAddress + ".";        		
     //bluetoothSerial.subscribe("\n", onMessage, subscribeFailed);
-    bluetoothSerial.write(onSucces,onFailure);
+    bluetoothSerial.read(onSucces,onFailure);
 }
 
 

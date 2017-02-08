@@ -41,17 +41,28 @@ function onDeviceReady(){
  */
 function onConnect() {
     alert("connected");
-    document.getElementByID("statusDiv").innerHTML="Connected to " + macAddress + ".";        		
-    bluetoothSerial.subscribe("\n", onMessage, subscribeFailed);
+    statusDiv.innerHTML="Connected to ";
+    //statusDiv.innerHTML="Connected to " + macAddress + ".";        		
+    //bluetoothSerial.subscribe("\n", onMessage, subscribeFailed);
+    bluetoothSerial.write(onSucces,onFailure);
+}
+
+
+function onSucces(data) {
+    alert(data);
+}
+
+function onFailure() {
+    alert("error");
 }
 
 /*
- * Data vises i "fraArduino"
+ * Data vises i "message"
  */
-function onMessage(data) {
-       alert(data);
-    document.getElementById("message").innerHTML ="Hastighed: "+ data;       
-}
+//function onMessage(data) {
+//    alert(data);
+//    document.getElementById("message").innerHTML ="Hastighed: "+ data;       
+//}
 
 /*
  * bluetoothSerial.write sender data af formen 
@@ -68,9 +79,9 @@ function onDisconnect() {
         statusDiv.innerHTML="Disconnected.";
 }
 
-function subscribeFailed() {
-        alert("subscribe failed");
-}
+//function subscribeFailed() {
+//        alert("subscribe failed");
+//}
 	
 function moveForward() {   
     sendToArduino("f"); 

@@ -40,14 +40,16 @@ function onDeviceReady(){
  * Arduino-kommandoen println()
  */
 function onConnect() {
-    bluetoothSerial.subscribe("\n", onMessage, subscribeFailed);
+    alert("connected");
     document.getElementByID("statusDiv").innerHTML="Connected to " + macAddress + ".";        		
+    bluetoothSerial.subscribe("\n", onMessage, subscribeFailed);
 }
 
 /*
  * Data vises i "fraArduino"
  */
 function onMessage(data) {
+       alert(data);
     document.getElementById("message").innerHTML ="Hastighed: "+ data;       
 }
 

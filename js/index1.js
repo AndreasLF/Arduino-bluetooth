@@ -4,7 +4,7 @@ var forwardButton, backwardButton, rightButton, leftButton, increaseButton, decr
 var buttonHoldDown = false;
 
 
-function onLoad(){
+function onLoad() {
     forwardButton = document.getElementById("forwardButton"); //Gets the foward button element
     backwardButton = document.getElementById("backwardButton"); //Gets the backward button element
     rightButton = document.getElementById("rightButton"); //Gets the right button element
@@ -48,7 +48,7 @@ function onConnect() {
  * Data vises i "fraArduino"
  */
 function onMessage(data) {
-    document.getElementById("fraArduino").innerHTML =""+ data;       
+    document.getElementById("message").innerHTML ="Hastighed: "+ data;       
 }
 
 /*

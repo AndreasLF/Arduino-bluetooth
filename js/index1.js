@@ -1,6 +1,6 @@
 //Adressen på Bluetooth Mate, Password er 1234
 var macAddress = "00:06:66:7D:83:DF";
-var forwardButton, backwardButton, rightButton, leftButton;
+var forwardButton, backwardButton, rightButton, leftButton, increaseButton, decreaseButton;
 var buttonHoldDown = false;
 
 
@@ -10,6 +10,9 @@ function onLoad(){
     rightButton = document.getElementById("rightButton"); //Gets the right button element
     leftButton = document.getElementById("leftButton"); //Gets the left button element
 
+    increaseButton = document.getElementById("increaseButton"); 
+    decreaseButton = document.getElementById("decreaseButton");
+    
     
 	document.addEventListener("deviceready", onDeviceReady, false); //eventlistener; calls the onDeviceReady() function, when device is ready
     
@@ -21,6 +24,9 @@ function onLoad(){
     rightButton.addEventListener("touchend", stopMove, false); //calls the stopMove() function on touchend
     leftButton.addEventListener("touchstart", moveLeft, false); //calls the moveLeft() functionon on touchstart
     leftButton.addEventListener("touchend", stopMove, false); //calls the stopMove() function when on touchend
+    
+    increaseButton.addEventListener("touchstart", increaseSpeed, false);
+    decreaseButton.addEventListener("touchstart", decreaseSpeed, false);
     
     
 }
@@ -66,26 +72,28 @@ function subscribeFailed() {
 	
 function moveForward() {   
     sendToArduino("f"); 
-    document.getElementById("message").innerHTML = "forward";
 }
     
 function moveBackward() { 
     sendToArduino("b");
-    document.getElementById("message").innerHTML = "Backward";
 }
 
 function moveRight() {   
     sendToArduino("r");
-    document.getElementById("message").innerHTML = "Right";
 }
 
 function moveLeft() {   
     sendToArduino("l");
-    document.getElementById("message").innerHTML = "Left";
 }
 
 function stopMove() {
     sendToArduino("s");
-    document.getElementById("message").innerHTML = "stop";
 }
 
+function increaseSpeed() {
+    sendToArduino("i");
+}
+
+function decreaseSpeed() {
+    sendToArduino("d");
+}

@@ -66,26 +66,26 @@ function subscribeFailed() {
 	
 function moveForward() {   
     sendToArduino("f"); 
-    document.getElementById("fraArduino").innerHTML = "forward";
+    document.getElementById("message").innerHTML = "forward";
 }
     
 function moveBackward() { 
     sendToArduino("b");
-    document.getElementById("fraArduino").innerHTML = "Backward";
+    document.getElementById("message").innerHTML = "Backward";
 }
 
 function moveRight() {   
     sendToArduino("r");
-    document.getElementById("fraArduino").innerHTML = "Right";
+    document.getElementById("message").innerHTML = "Right";
 }
 
 function moveLeft() {   
     sendToArduino("l");
-    document.getElementById("fraArduino").innerHTML = "Left";
+    document.getElementById("message").innerHTML = "Left";
 }
 
 function stopMove() {
     sendToArduino("s");
-    document.getElementById("fraArduino").innerHTML = "stop";
+    document.getElementById("message").innerHTML = "stop";
 }
 

@@ -1,0 +1,36 @@
+body{
+    background-color: #2196F3;
+    color: #FFFFFF;
+}
+
+#Up {
+    margin-left: 500px;
+    height: 100px;
+    width: 100px;
+}
+
+
+#Down {
+
+    height: 100px;
+    width: 100px;
+    float:left;
+}
+
+#Right {
+    height: 100px;
+    width: 100px;
+    float:left;
+}
+
+#Left {
+    height: 100px;
+    width: 100px;
+    float:left;
+}
+
+.button{
+    
+  background-color: #607D8B;
+}
+

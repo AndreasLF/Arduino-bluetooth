@@ -10,19 +10,28 @@ https://github.com/don/BluetoothSerial
 		<meta name="viewport" content="width=device-width, initial-scale=1">	
 		<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index1.js"></script>
-       
+        <link rel="stylesheet" type="text/css" href="Index.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <title>Bluetooth Test</title>
     </head>
     <body onload="onLoad()">
         <h1>Bluetooth Test</h1>
         <div id="message"></div>
         <div id="statusDiv"></div>
-        <div style="height:50px; width:50px; background-color:grey;" id="forwardButton"></div>
-		<div style="height:50px; width:50px; background-color:red;" id="backwardButton"></div>
-		<div style="height:50px; width:50px; background-color:green;" id="rightButton"></div>
-		<div style="height:50px; width:50px; background-color:blue;" id="leftButton"></div>
+        
+        <div class="buttons">
+        <div id="forwardButton" class="button"><i class="material-icons">keyboard_arrow_up</i></div>
+		<div id="leftButton" class="button"><i class="material-icons">keyboard_arrow_left</i></div>
+        <div id="backwardButton" class="button"><i class="material-icons">keyboard_arrow_down</i></div>
+		<div id="rightButton" class="button"><i class="material-icons">keyboard_arrow_right</i></div>
+        </div>
+        
+        <!--
+
         <div style="height:50px;" id="increaseButton">increase</div>
 		<div style="height:50px;" id="decreaseButton">decrese</div>
 
+        -->
+        
     </body>
 </html>

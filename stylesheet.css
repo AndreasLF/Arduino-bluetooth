@@ -1,0 +1,66 @@
+body{
+    background-color: #2196F3;
+}
+
+h1{
+    text-align: center;
+    color: #FFFFFF;
+    font-family: 'roboto';
+}
+
+#forwardButton {
+    margin: auto;
+}
+
+#backwardButton {
+    margin: auto;
+}
+
+#leftButton {
+    float: left;
+}
+
+#rightButton {
+}
+
+#controllerDiv {
+}
+
+#increaseButton {
+    display: inline-block;
+}
+
+#decreaseButton {
+    display: inline-block;
+}
+
+#speedCounterDiv {
+    color: #FFFFFF;
+    font-family: 'roboto';
+    font-size: 16px;
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    text-align: center;
+}
+
+#speedController {
+    height: 48px;
+    margin-top: 80px;
+    
+}
+
+.button{
+    color: #FFFFFF;
+    background-color: #607D8B;
+    height: 48px;
+    width: 48px;
+    border-radius: 50px;
+    box-shadow: 0px 3px 17px -1px rgba(0, 0, 0, 0.15);
+}
+
+.button-content {
+    font-size: 100px;
+    text-align: center;
+}
+

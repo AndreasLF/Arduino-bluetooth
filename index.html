@@ -3,26 +3,41 @@
 https://github.com/don/BluetoothSerial
 -->
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1">	
-		<script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index1.js"></script>
-       
-        <title>Bluetooth Test</title>
-    </head>
-    <body onload="onLoad()">
-        <h1>Bluetooth Test</h1>
-        <div id="message"></div>
-        <div id="statusDiv"></div>
-        <div style="height:50px; width:50px; background-color:grey;" id="forwardButton"></div>
-		<div style="height:50px; width:50px; background-color:red;" id="backwardButton"></div>
-		<div style="height:50px; width:50px; background-color:green;" id="rightButton"></div>
-		<div style="height:50px; width:50px; background-color:blue;" id="leftButton"></div>
-        <div style="height:50px;" id="increaseButton">increase</div>
-		<div style="height:50px;" id="decreaseButton">decrese</div>
 
-    </body>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index1.js"></script>
+    <link rel="stylesheet" type="text/css" href="Index.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <title>Robot Controller</title>
+</head>
+
+<body onload="onLoad()">
+    <h1>Robot Controller</h1>
+    <div id="message"></div>
+    <div id="statusDiv"></div>
+
+    <div id="controllerDiv">
+        <div id="forwardButton" class="button"><i class="material-icons" style="font-size: 48px;">keyboard_arrow_up</i></div>
+        <div id="leftButton" class="button"><i class="material-icons" style="font-size: 48px;">keyboard_arrow_left</i></div>
+        <div id="rightButton" class="button"><i class="material-icons" style="font-size: 48px;">keyboard_arrow_right</i></div>
+        <div id="backwardButton" class="button"><i class="material-icons" style="font-size: 48px;">keyboard_arrow_down</i></div>
+    </div>
+
+    <div id="speedController">
+		<div id="decreaseButton" class="button"><i class="material-icons" style="font-size: 48px;">remove_circle_outline</i></div>
+    
+        <div id="speedCounterDiv">110</div>    
+    
+        <div id="increaseButton" class="button"><i class="material-icons" style="font-size: 48px;">add_circle_outline</i></div>
+    </div>
+
+
+</body>
+
 </html>

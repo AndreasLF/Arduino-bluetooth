@@ -17,26 +17,60 @@ https://github.com/don/BluetoothSerial
     <title>Robot Controller</title>
 </head>
 
-<body onload="onLoad()">
-    <h1>Robot Controller</h1>
-    <div id="message"></div>
-    <div id="statusDiv"></div>
+<body id="body" onload="onLoad()">
 
-    <div id="controllerDiv">
-        <div id="forwardButton" class="button"><i class="material-icons" style="font-size: 48px;">keyboard_arrow_up</i></div>
-        <div id="leftButton" class="button"><i class="material-icons" style="font-size: 48px;">keyboard_arrow_left</i></div>
-        <div id="rightButton" class="button"><i class="material-icons" style="font-size: 48px;">keyboard_arrow_right</i></div>
-        <div id="backwardButton" class="button"><i class="material-icons" style="font-size: 48px;">keyboard_arrow_down</i></div>
+    <div id="themeMenu">
+        <div id="blueThemeButton" onclick="changeTheme(blueTheme)" class="themeButton"></div>
+        <div id="orangeThemeButton" onclick="changeTheme(orangeTheme)" class="themeButton"></div>
+        <div id="indigoThemeButton" onclick="changeTheme(indigoTheme)" class="themeButton"></div>
+        <div id="purpleThemeButton" onclick="changeTheme(purpleTheme)" class="themeButton"></div>
+        <div id="greenThemeButton" onclick="changeTheme(greenTheme)" class="themeButton"></div>
+        <div id="tealThemeButton" onclick="changeTheme(tealTheme)" class="themeButton"></div>
     </div>
 
-    <div id="speedController">
-		<div id="decreaseButton" class="button"><i class="material-icons" style="font-size: 48px;">remove_circle_outline</i></div>
-    
-        <div id="speedCounterDiv">110</div>    
-    
-        <div id="increaseButton" class="button"><i class="material-icons" style="font-size: 48px;">add_circle_outline</i></div>
+    <div id="leftMenu">
+        <div id="closeMenu" onclick="openMenu()"><i class="material-icons" style="font-size: 48px; display: block;">close</i></div>
+        
+        <div class="leftMenuButton" id="macAddressChangerDiv" onclick="changeMacAddress()"></div>
+        <div class="leftMenuButton"></div>
+        <div class="leftMenuButton"></div>
+        <div class="leftMenuButton"></div>
+
+        
     </div>
 
+    <div id="content">
+    </div>
+
+        <div id="menuBar">
+            <div id="menuButton" class="menuButtons" onclick="openMenu()">
+                <i id="menuIcon" class="material-icons" style="font-size: 36px; margin-top: 6px; margin-left: 6px;">menu</i>
+            </div>
+            <div id="themeButton" class="menuButtons" onclick="openThemeMenu()">
+                <i id="paletteIcon" class="material-icons" style="font-size: 36px;">palette</i>
+            </div>
+        </div>
+
+
+
+        <div id="message"></div>
+        <div id="statusDiv"></div>
+
+        <div id="controllerDiv">
+            <div id="forwardButton" class="button"><i class="material-icons" style="font-size: 48px;">keyboard_arrow_up</i></div>
+            <div id="leftButton" class="button"><i class="material-icons" style="font-size: 48px;">keyboard_arrow_left</i></div>
+            <div id="rightButton" class="button"><i class="material-icons" style="font-size: 48px;">keyboard_arrow_right</i></div>
+            <div id="backwardButton" class="button"><i class="material-icons" style="font-size: 48px;">keyboard_arrow_down</i></div>
+        </div>
+
+        <div id="speedController">
+            <div id="decreaseButton" class="button"><i class="material-icons" style="font-size: 48px;">remove_circle_outline</i></div>
+
+            <div id="speedCounterDiv">110</div>
+
+            <div id="increaseButton" class="button"><i class="material-icons" style="font-size: 48px;">add_circle_outline</i></div>
+        </div>
+    
 
 </body>
 

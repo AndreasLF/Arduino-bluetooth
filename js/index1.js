@@ -105,8 +105,8 @@ function onDeviceReady() {
 function onConnect() {
 //    alert("connected");
 //    statusDiv.innerHTML = "Connected to ";
-    statusDiv.innerHTML = "Connected to " + macAddress + ".";        		
     bluetoothSerial.subscribe("\n", onMessage, subscribeFailed);
+    statusDiv.innerHTML = "Connected to " + macAddress + ".";        		
 //        bluetoothSerial.read(onSucces, onFailure);
 }
 

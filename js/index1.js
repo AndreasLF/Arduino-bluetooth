@@ -106,7 +106,7 @@ function onConnect() {
     alert("connected");
     statusDiv.innerHTML = "Connected to ";
     //statusDiv.innerHTML="Connected to " + macAddress + ".";        		
-    //bluetoothSerial.subscribe("\n", onMessage, subscribeFailed);
+//    bluetoothSerial.subscribe("\n", onMessage, subscribeFailed);
     bluetoothSerial.read(onSucces, onFailure);
 }
 
@@ -125,6 +125,10 @@ function onFailure() {
 //function onMessage(data) {
 //    alert(data);
 //    document.getElementById("message").innerHTML ="Hastighed: "+ data;       
+//}
+//
+//function subscribeFailed(){
+//    alert("failed to receive data from Arduino");
 //}
 
 

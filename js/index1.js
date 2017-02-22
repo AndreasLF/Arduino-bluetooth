@@ -104,12 +104,11 @@ function onDeviceReady() {
  */
 function onConnect() {
     alert("connected");
-//    statusDiv.innerHTML = "Connected to ";
-    statusDiv.innerHTML="Connected to " + macAddress + ".";        		
-    bluetoothSerial.subscribe("\n", onMessage, subscribeFailed);
-//    bluetoothSerial.read(onSucces, onFailure);
+    statusDiv.innerHTML = "Connected to ";
+//    statusDiv.innerHTML = "Connected to " + macAddress + ".";        		
+//    bluetoothSerial.subscribe("\n", onMessage, subscribeFailed);
+        bluetoothSerial.read(onSucces, onFailure);
 }
-
 
 //function onSucces(data) {
 //    alert(data);
@@ -117,7 +116,7 @@ function onConnect() {
 //
 //function onFailure() {
 //    alert("error");
-}
+//}
 
 /*
  * Data vises i "message"

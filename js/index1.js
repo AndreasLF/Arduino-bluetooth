@@ -124,7 +124,8 @@ function onConnect() {
 function onMessage(data) {
 //    alert("receiving data from arduino")
 //    alert(data);
-    document.getElementById("messageDiv").innerHTML = "Hastighed: "+ data;       
+//    document.getElementById("messageDiv").innerHTML = "Hastighed: "+ data; 
+    statusDiv.innerHTML = "hastighed" + data; 
 }
 
 function subscribeFailed(){

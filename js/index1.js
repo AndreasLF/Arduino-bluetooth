@@ -156,7 +156,7 @@ function moveForward() {
     forwardButton.style.color = "rgba(255, 255, 255, 0.5)";
     forwardButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.3)";
 
-    // sendToArduino("f"); 
+    sendToArduino("f"); 
 }
 
 /*

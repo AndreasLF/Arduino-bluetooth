@@ -1,6 +1,6 @@
 var macAddress = "00:06:66:7D:83:DF"; //BLuetooth Mate mac adress, pasword 1234
 var forwardButton, backwardButton, rightButton, leftButton, increaseButton, decreaseButton, speedCounterDiv;
-var speed = 110; //Robot default speed
+var speed = 115; //Robot default speed
 var themeButtonClicked = false; //variable containing information on whether or not the theme button is clicked
 var menuButtonClicked = false; //variable containing information on whether or not the menu button is clicked
 
@@ -158,20 +158,18 @@ function onDisconnect() {
  * Makes the robot drive forward
  */
 function moveForward() {
+    sendToArduino("f"); 
     forwardButton.style.color = "rgba(255, 255, 255, 0.5)";
     forwardButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.3)";
-
-    sendToArduino("f"); 
 }
 
 /*
  * Makes the robot reverse
  */
 function moveBackward() {
+    sendToArduino("b");
     backwardButton.style.color = "rgba(255, 255, 255, 0.5)";
     backwardButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.3)";
-
-    sendToArduino("b");
 }
 
 
@@ -179,43 +177,41 @@ function moveBackward() {
  * Makes the robot turn right
  */
 function moveRight() {
+    sendToArduino("r");
     rightButton.style.color = "rgba(255, 255, 255, 0.5)";
     rightButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.3)";
-
-    sendToArduino("r");
 }
 
 /*
  * Makes the robot turn left
  */
 function moveLeft() {
+    sendToArduino("l");
     leftButton.style.color = "rgba(255, 255, 255, 0.5)";
     leftButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.3)";
-
-    sendToArduino("l");
 }
 
 /*
  * Stops the robot. Executed on touchend
  */
 function stopMove() {
-    setButtonStyleDefault();
     sendToArduino("s");
+    setButtonStyleDefault();
 }
 
 /*
  * This function increases the robot speed
  */
 function increaseSpeed() {
+    sendToArduino("i");
     increaseButton.style.color = "rgba(255, 255, 255, 0.5)";
     increaseButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.3)";
 
     /*The speed will only increase if it is below the maximum*/
     if (speed < 250) {
-        speed = speed + 10;
-        speedCounterDiv.innerHTML = speed;
-
-        sendToArduino("i");
+        speed = speed + 15;
+        var s = (speed - 100) / 1.5;
+        speedCounterDiv.innerHTML = s + " %";
     }
 }
 
@@ -223,15 +219,15 @@ function increaseSpeed() {
  * This function decreases the robot speed
  */
 function decreaseSpeed() {
+    sendToArduino("d");
     decreaseButton.style.color = "rgba(255, 255, 255, 0.5)";
     decreaseButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.3)";
 
     /*The speed will only decrease if it is above the minimum*/
     if (speed > 100) {
-        speed = speed - 10;
-        speedCounterDiv.innerHTML = speed;
-
-        sendToArduino("d");
+        speed = speed - 15;
+        var s = (speed - 100) / 1.5;
+        speedCounterDiv.innerHTML = s + " %";
     }
 
 }

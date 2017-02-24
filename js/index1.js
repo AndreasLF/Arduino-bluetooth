@@ -1,5 +1,5 @@
 var macAddress = "00:06:66:7D:83:DF"; //BLuetooth Mate mac adress, pasword 1234
-var forwardButton, backwardButton, rightButton, leftButton, increaseButton, decreaseButton, speedCounterDiv;
+var forwardButton, backwardButton, rightButton, leftButton, increaseButton, decreaseButton, speedCounterDiv; //Declaration of variables containing html elements
 var speed = 115; //Robot default speed
 var themeButtonClicked = false; //variable containing information on whether or not the theme button is clicked
 var menuButtonClicked = false; //variable containing information on whether or not the menu button is clicked
@@ -55,21 +55,21 @@ function onLoad() {
     rightButton = document.getElementById("rightButton"); //Gets the right button element
     leftButton = document.getElementById("leftButton"); //Gets the left button element
 
-    increaseButton = document.getElementById("increaseButton");
-    decreaseButton = document.getElementById("decreaseButton");
-    speedCounterDiv = document.getElementById("speedCounterDiv");
+    increaseButton = document.getElementById("increaseButton"); //Gets the increase button element
+    decreaseButton = document.getElementById("decreaseButton"); //Gets the decrease button element
+    speedCounterDiv = document.getElementById("speedCounterDiv"); //Gets the speed count div element
 
     var controllerWidth = document.getElementById("controllerDiv").offsetWidth; //This retrieves the width of the controllerDiv
     console.log(controllerWidth); //prints controllerWidth to console. Useful for testing and debugging
 
-    rightButton.style.marginLeft = (controllerWidth - 48) / 2 + 48 + "px";
-    leftButton.style.marginLeft = (controllerWidth - 48) / 2 - 48 + "px";
+    rightButton.style.marginLeft = (controllerWidth - 48) / 2 + 48 + "px"; //The right button is placed right of the center
+    leftButton.style.marginLeft = (controllerWidth - 48) / 2 - 48 + "px"; //The left button is placed left to the center
 
-    decreaseButton.style.marginLeft = (controllerWidth - 3 * 48) / 2 + "px";
+    decreaseButton.style.marginLeft = (controllerWidth - 3 * 48) / 2 + "px"; //Positions the decreasebutton element
 
 
     console.log(macAddress); //prints the macAddress to console. Used for bug fixing
-    document.getElementById("macAddressChangerDiv").innerHTML = "BT device mac address: <br>'" + macAddress + "'";
+    document.getElementById("macAddressChangerDiv").innerHTML = "BT device mac address: <br>'" + macAddress + "'"; //Message to be shown in menu maccadress changer button
 
 
     document.addEventListener("deviceready", onDeviceReady, false); //eventlistener; calls the onDeviceReady() function, when device is ready
@@ -81,21 +81,22 @@ function onLoad() {
     rightButton.addEventListener("touchstart", moveRight, false); //calls the moveRight() function on touchstart
     rightButton.addEventListener("touchend", stopMove, false); //calls the stopMove() function on touchend
     leftButton.addEventListener("touchstart", moveLeft, false); //calls the moveLeft() functionon on touchstart
-    leftButton.addEventListener("touchend", stopMove, false); //calls the stopMove() function when on touchend
+    leftButton.addEventListener("touchend", stopMove, false); //calls the stopMove() function on touchend
 
-    increaseButton.addEventListener("touchstart", increaseSpeed, false);
-    increaseButton.addEventListener("touchend", setButtonStyleDefault, false);
+    increaseButton.addEventListener("touchstart", increaseSpeed, false); //calls the increaseSpeed() function on touchstart
+    increaseButton.addEventListener("touchend", setButtonStyleDefault, false); //calls the setButtonStyleDefault() function on touchend
 
-    decreaseButton.addEventListener("touchstart", decreaseSpeed, false);
-    decreaseButton.addEventListener("touchend", setButtonStyleDefault, false);
+    decreaseButton.addEventListener("touchstart", decreaseSpeed, false); //calls the decreaseSpeed() function on touchstart
+    decreaseButton.addEventListener("touchend", setButtonStyleDefault, false); //calls the setButtonStyleDefault() function on touchend
 
 }
 
 /*
  * Configures the bluetooth plugin, when device is ready
+ * Plugin by Don is used: https://github.com/don/BluetoothSerial
  */
 function onDeviceReady() {
-    bluetoothSerial.connect(macAddress, onConnect, onDisconnect);
+    bluetoothSerial.connect(macAddress, onConnect, onDisconnect); 
 }
 
 /* I onConnect kaldes bluetoothSerial.subscribe, der kaldes når data modtages
@@ -103,31 +104,22 @@ function onDeviceReady() {
  * Arduino-kommandoen println()
  */
 function onConnect() {
-//    alert("connected");
-//    statusDiv.innerHTML = "Connected to ";
+    alert("connected"); //Alerts user when connected
     bluetoothSerial.subscribe("\n", onMessage, subscribeFailed);
-    statusDiv.innerHTML = "Connected to " + macAddress + ".";        		
-//        bluetoothSerial.read(onSucces, onFailure);
+    statusDiv.innerHTML = "Connected to " + macAddress + "."; //Displays the mac address when connected       		
 }
 
-//function onSucces(data) {
-//    alert(data);
-//}
-//
-//function onFailure() {
-//    alert("error");
-//}
-
 /*
- * Data vises i "message"
+ * Data is shown in message div
+ * param data contains a single char received from Arduino
  */
 function onMessage(data) {
-//    alert("receiving data from arduino")
-//    alert(data);
-//    document.getElementById("messageDiv").innerHTML = "Hastighed: "+ data; 
     statusDiv.innerHTML = "hastighed" + data; 
 }
 
+/*
+* Called if subscriptio to BLuetooth device failed
+*/
 function subscribeFailed(){
     alert("failed to receive data from Arduino");
 }
@@ -150,26 +142,22 @@ function onDisconnect() {
     statusDiv.innerHTML = "Disconnected.";
 }
 
-//function subscribeFailed() {
-//        alert("subscribe failed");
-//}
-
 /*
  * Makes the robot drive forward
  */
 function moveForward() {
-    sendToArduino("f"); 
-    forwardButton.style.color = "rgba(255, 255, 255, 0.5)";
-    forwardButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.3)";
+    sendToArduino("f"); //The character 'f' is sent to Arduino, which makes it move forward
+    forwardButton.style.color = "rgba(255, 255, 255, 0.5)"; //Button icon color is changed
+    forwardButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.3)"; //Button shadow is changed
 }
 
 /*
  * Makes the robot reverse
  */
 function moveBackward() {
-    sendToArduino("b");
-    backwardButton.style.color = "rgba(255, 255, 255, 0.5)";
-    backwardButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.3)";
+    sendToArduino("b"); //The character 'b' is sent to Arduino, which makes it move backward
+    backwardButton.style.color = "rgba(255, 255, 255, 0.5)"; //Button icon color is changed
+    backwardButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.3)"; //Button shadow is changed
 }
 
 
@@ -177,58 +165,62 @@ function moveBackward() {
  * Makes the robot turn right
  */
 function moveRight() {
-    sendToArduino("r");
-    rightButton.style.color = "rgba(255, 255, 255, 0.5)";
-    rightButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.3)";
+    sendToArduino("r"); //The character 'r' is sent to Arduino, which makes it turn right
+    rightButton.style.color = "rgba(255, 255, 255, 0.5)"; //Button icon color is changed
+    rightButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.3)"; //Button shadow is changed
 }
 
 /*
  * Makes the robot turn left
  */
 function moveLeft() {
-    sendToArduino("l");
-    leftButton.style.color = "rgba(255, 255, 255, 0.5)";
-    leftButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.3)";
+    sendToArduino("l"); //The character 'l' is sent to Arduino, which makes it left right
+    leftButton.style.color = "rgba(255, 255, 255, 0.5)"; //Button icon color is changed
+    leftButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.3)"; //Button shadow is changed
 }
 
 /*
  * Stops the robot. Executed on touchend
  */
 function stopMove() {
-    sendToArduino("s");
-    setButtonStyleDefault();
+    sendToArduino("s"); //The character 's' is sent to Arduino, which makes it stop
+    setButtonStyleDefault(); //Changes the button style back to default
 }
 
 /*
  * This function increases the robot speed
  */
 function increaseSpeed() {
-    sendToArduino("i");
-    increaseButton.style.color = "rgba(255, 255, 255, 0.5)";
-    increaseButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.3)";
-
     /*The speed will only increase if it is below the maximum*/
     if (speed < 250) {
-        speed = speed + 15;
-        var s = (speed - 100) / 1.5;
-        speedCounterDiv.innerHTML = s + " %";
+        sendToArduino("i"); //The character 'i' is sent to Arduino, which increases the speed
+        speed = speed + 15; //Increses speed by 15
+        var s = (speed - 100) / 1.5; //Converts the speed increase to percentage
+        speedCounterDiv.innerHTML = s + " %"; //Shows the percentage
     }
+    
+    increaseButton.style.color = "rgba(255, 255, 255, 0.5)"; //Button icon color is changed
+    increaseButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.3)"; //Button shadow is changed
+
 }
 
 /*
  * This function decreases the robot speed
  */
 function decreaseSpeed() {
-    sendToArduino("d");
-    decreaseButton.style.color = "rgba(255, 255, 255, 0.5)";
-    decreaseButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.3)";
-
+    
     /*The speed will only decrease if it is above the minimum*/
     if (speed > 100) {
-        speed = speed - 15;
-        var s = (speed - 100) / 1.5;
-        speedCounterDiv.innerHTML = s + " %";
+        sendToArduino("d"); //The character 'd' is sent to Arduino, which decreases the speeed 
+        speed = speed - 15; //Decreases the speed by 15
+        var s = (speed - 100) / 1.5; //Converts the speed increase to percentage
+        speedCounterDiv.innerHTML = s + " %"; //Shows the percentage
     }
+    
+    decreaseButton.style.color = "rgba(255, 255, 255, 0.5)"; //Button icon color is changed
+    decreaseButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.3)"; //Button shadow is changed
+
+    
 
 }
 
@@ -237,6 +229,8 @@ function decreaseSpeed() {
  * Called by stopMove(), which is executed on 'touchend'
  */
 function setButtonStyleDefault() {
+    
+    /*Changes all icon colors and shadows back to default*/
     forwardButton.style.color = "#FFFFFF";
     forwardButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.15)";
     backwardButton.style.color = "#FFFFFF";
@@ -246,7 +240,7 @@ function setButtonStyleDefault() {
     leftButton.style.color = "#FFFFFF";
     leftButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.15)";
 
-    /*Makes sure the buttons will still be greyed out, when it wont the speed wont go higher or lower*/
+    /*Makes sure the buttons will still be greyed out if it cannot go higher*/
     if (speed > 100 && speed < 250) {
         increaseButton.style.color = "#FFFFFF";
         increaseButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.15)";
@@ -262,13 +256,13 @@ function openThemeMenu() {
 
     /*If the theme button is not clicked the menu will open, else it will close*/
     if (themeButtonClicked == false) {
-        document.getElementById("themeMenu").style.height = "48px";
-        document.getElementById("content").style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-        themeButtonClicked = true;
+        document.getElementById("themeMenu").style.height = "48px"; //changes the height to 48px, which makes it visible 
+        document.getElementById("content").style.backgroundColor = "rgba(0, 0, 0, 0.5)"; //puts a shade on top of the content
+        themeButtonClicked = true; //button is now clicked and the menu is open
     } else if (themeButtonClicked == true) {
-        document.getElementById("themeMenu").style.height = "0px";
-        document.getElementById("content").style.backgroundColor = "rgba(0, 0, 0, 0)";
-        themeButtonClicked = false;
+        document.getElementById("themeMenu").style.height = "0px"; //changes the heigth to 0px, which makes it invisisble
+        document.getElementById("content").style.backgroundColor = "rgba(0, 0, 0, 0)"; //removes the shade on top of content
+        themeButtonClicked = false; //button is now uncklicked and the menu is closed
     }
 
 }
@@ -301,25 +295,30 @@ function changeTheme(theme) {
 function openMenu() {
     /*If the menu button is not clicked the menu will open, else it will close*/
     if (menuButtonClicked == false) {
-        document.getElementById("leftMenu").style.width = "250px";
-        document.getElementById("content").style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-        menuButtonClicked = true;
+        document.getElementById("leftMenu").style.width = "250px"; //width is 250px which makes it visible
+        document.getElementById("content").style.backgroundColor = "rgba(0, 0, 0, 0.5)"; //adds a shade to the content
+        menuButtonClicked = true; //menu button is clicked and menu is open
     } else if (menuButtonClicked == true) {
-        document.getElementById("leftMenu").style.width = "0px";
-        document.getElementById("content").style.backgroundColor = "rgba(0, 0, 0, 0)";
-        menuButtonClicked = false;
+        document.getElementById("leftMenu").style.width = "0px"; //width is changed to 0px, which makes it invisible
+        document.getElementById("content").style.backgroundColor = "rgba(0, 0, 0, 0)"; //removes the shade from the content
+        menuButtonClicked = false; //menu button is unclicked and menu is closed
     }
 
 }
 
+/*
+* This function changes the mac address
+* Is called when macAdddresChanger button is clicked 
+*/
 function changeMacAddress() {
-    var mac = prompt("Enter a mac address to connect to another bluetooth device", macAddress);
+    var mac = prompt("Enter a mac address to connect to another bluetooth device", macAddress); //Prompt which allows the user to enter a new mac address
 
+    /*If a mac address is entered the following code will execute*/
     if (mac != null) {
-        if (confirm("Are you sure you want to change the mac address to the following: '" + mac + "'") == true) {
-            macAddress = mac;
-            onLoad();
-        } else {
+        if (confirm("Are you sure you want to change the mac address to the following: '" + mac + "'") == true) {//Asks user to confirm mac address change
+            macAddress = mac; //Mac address is changed
+            onLoad(); //onLoad is called to apply changes
+        } else {//If user does not confirm nothing happens
 
         }
     }

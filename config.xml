@@ -5,12 +5,12 @@
    
 
    
-	<name>SimpleSerial</name>
+	<name>BLuetooth controller</name>
     <description>
-        Simple serial demo for Bluetooth serial Cordova plugin.   
+        Bluetooth controller for Arduino robot   
     </description>
     <author>
-        Baseret på eksempel af Don Coleman https://github.com/don/BluetoothSerial
+        Based on example by Don Coleman: https://github.com/don/BluetoothSerial
     </author>
 	
     <content src="index.html" />

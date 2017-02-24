@@ -96,16 +96,15 @@ function onLoad() {
  * Plugin by Don is used: https://github.com/don/BluetoothSerial
  */
 function onDeviceReady() {
-    bluetoothSerial.connect(macAddress, onConnect, onDisconnect); 
+    bluetoothSerial.connect(macAddress, onConnect, onDisconnect);
 }
 
-/* I onConnect kaldes bluetoothSerial.subscribe, der kaldes når data modtages
- * data skal sendes med et slut tegn i dette eksempel er det \n, der indgår i
- * Arduino-kommandoen println()
+/*
+ * Subscribes to bluetooth signal and displays the macAdress
  */
 function onConnect() {
     alert("connected"); //Alerts user when connected
-    bluetoothSerial.subscribe("\n", onMessage, subscribeFailed);
+    bluetoothSerial.subscribe("\n", onMessage, subscribeFailed); //subscribes to bluetooth
     statusDiv.innerHTML = "Connected to " + macAddress + "."; //Displays the mac address when connected       		
 }
 
@@ -114,13 +113,13 @@ function onConnect() {
  * param data contains a single char received from Arduino
  */
 function onMessage(data) {
-    statusDiv.innerHTML = "hastighed" + data; 
+    statusDiv.innerHTML = "hastighed" + data;
 }
 
 /*
-* Called if subscriptio to BLuetooth device failed
-*/
-function subscribeFailed(){
+ * Called if subscriptio to BLuetooth device failed
+ */
+function subscribeFailed() {
     alert("failed to receive data from Arduino");
 }
 
@@ -198,7 +197,7 @@ function increaseSpeed() {
         var s = (speed - 100) / 1.5; //Converts the speed increase to percentage
         speedCounterDiv.innerHTML = s + " %"; //Shows the percentage
     }
-    
+
     increaseButton.style.color = "rgba(255, 255, 255, 0.5)"; //Button icon color is changed
     increaseButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.3)"; //Button shadow is changed
 
@@ -208,7 +207,7 @@ function increaseSpeed() {
  * This function decreases the robot speed
  */
 function decreaseSpeed() {
-    
+
     /*The speed will only decrease if it is above the minimum*/
     if (speed > 100) {
         sendToArduino("d"); //The character 'd' is sent to Arduino, which decreases the speeed 
@@ -216,11 +215,11 @@ function decreaseSpeed() {
         var s = (speed - 100) / 1.5; //Converts the speed increase to percentage
         speedCounterDiv.innerHTML = s + " %"; //Shows the percentage
     }
-    
+
     decreaseButton.style.color = "rgba(255, 255, 255, 0.5)"; //Button icon color is changed
     decreaseButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.3)"; //Button shadow is changed
 
-    
+
 
 }
 
@@ -229,7 +228,7 @@ function decreaseSpeed() {
  * Called by stopMove(), which is executed on 'touchend'
  */
 function setButtonStyleDefault() {
-    
+
     /*Changes all icon colors and shadows back to default*/
     forwardButton.style.color = "#FFFFFF";
     forwardButton.style.boxShadow = "0px 3px 17px -1px rgba(0, 0, 0, 0.15)";
@@ -307,18 +306,18 @@ function openMenu() {
 }
 
 /*
-* This function changes the mac address
-* Is called when macAdddresChanger button is clicked 
-*/
+ * This function changes the mac address
+ * Is called when macAdddresChanger button is clicked 
+ */
 function changeMacAddress() {
     var mac = prompt("Enter a mac address to connect to another bluetooth device", macAddress); //Prompt which allows the user to enter a new mac address
 
     /*If a mac address is entered the following code will execute*/
     if (mac != null) {
-        if (confirm("Are you sure you want to change the mac address to the following: '" + mac + "'") == true) {//Asks user to confirm mac address change
+        if (confirm("Are you sure you want to change the mac address to the following: '" + mac + "'") == true) { //Asks user to confirm mac address change
             macAddress = mac; //Mac address is changed
             onLoad(); //onLoad is called to apply changes
-        } else {//If user does not confirm nothing happens
+        } else { //If user does not confirm nothing happens
 
         }
     }
